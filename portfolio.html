@@ -1,0 +1,1803 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#F8F6F0">
+    <meta name="description" content="Portfolio d'Élisée Baki, étudiant en Master 1 Réseaux et Télécommunications à l'ESATIC. Projets IoT, LoRaWAN, systèmes embarqués et réseaux sécurisés.">
+    <title>Élisée Baki — Réseaux, Télécommunications & IoT</title>
+    <script>
+        if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            document.documentElement.classList.add("motion-enhanced");
+        }
+    </script>
+    <style>
+        :root {
+            color-scheme: light;
+            --paper: #F8F6F0;
+            --surface: #FFFEFA;
+            --ink: #172421;
+            --muted: #62716b;
+            --line: #dfe5dc;
+            --teal: #155E63;
+            --teal-dark: #10494D;
+            --teal-soft: #E5F0EE;
+            --amber: #A45717;
+            --amber-light: #E6A344;
+            --serif: Georgia, "Times New Roman", serif;
+            --sans: "Segoe UI", Arial, sans-serif;
+            --max-width: 1160px;
+        }
+
+        @keyframes hero-enter {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes portrait-settle {
+            from { opacity: 0; transform: translateY(20px) rotate(1deg); }
+            to { opacity: 1; transform: translateY(0) rotate(0); }
+        }
+
+        @keyframes data-flow {
+            to { stroke-dashoffset: -36; }
+        }
+
+        @keyframes node-pulse {
+            0%, 100% { opacity: .25; transform: scale(.86); }
+            50% { opacity: .8; transform: scale(1.12); }
+        }
+
+        @keyframes signal-pulse {
+            0%, 100% { opacity: .65; }
+            50% { opacity: 1; }
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: var(--sans);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        a:focus-visible,
+        summary:focus-visible {
+            outline: 3px solid var(--amber-light);
+            outline-offset: 4px;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .skip-link {
+            position: absolute;
+            z-index: 20;
+            top: 12px;
+            left: 12px;
+            padding: 10px 14px;
+            transform: translateY(-160%);
+            background: var(--ink);
+            color: white;
+            border-radius: 5px;
+        }
+
+        .skip-link:focus {
+            transform: translateY(0);
+        }
+
+        .site-header {
+            position: sticky;
+            z-index: 10;
+            top: 0;
+            border-bottom: 1px solid rgba(23, 36, 33, .09);
+            background: rgba(248, 246, 240, .94);
+            backdrop-filter: blur(14px);
+        }
+
+        .scroll-progress {
+            position: fixed;
+            z-index: 20;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            transform: scaleX(0);
+            transform-origin: left;
+            background: var(--amber-light);
+            pointer-events: none;
+        }
+
+        .nav-wrap,
+        .section,
+        .hero-inner,
+        .footer-inner {
+            width: min(var(--max-width), calc(100% - 48px));
+            margin-inline: auto;
+        }
+
+        .nav-wrap {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 28px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 11px;
+            font-weight: 750;
+            letter-spacing: -.03em;
+        }
+
+        .brand-mark {
+            display: grid;
+            width: 36px;
+            height: 36px;
+            place-items: center;
+            border-radius: 50%;
+            background: var(--teal);
+            color: white;
+            font-family: var(--serif);
+            font-size: 15px;
+            letter-spacing: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: clamp(18px, 3vw, 34px);
+            color: #42534c;
+            font-size: .88rem;
+            font-weight: 600;
+        }
+
+        .nav-links a:not(.nav-contact):hover,
+        .nav-links a:not(.nav-contact).is-active,
+        .footer-links a:hover {
+            color: var(--teal);
+        }
+
+        .nav-links a:not(.nav-contact) {
+            position: relative;
+        }
+
+        .nav-links a:not(.nav-contact)::after {
+            position: absolute;
+            right: 0;
+            bottom: -7px;
+            left: 0;
+            height: 2px;
+            transform: scaleX(0);
+            transform-origin: left;
+            background: var(--teal);
+            content: "";
+            transition: transform .22s ease;
+        }
+
+        .nav-links a:not(.nav-contact):hover::after,
+        .nav-links a:not(.nav-contact).is-active::after {
+            transform: scaleX(1);
+        }
+
+        .nav-contact,
+        .button-primary {
+            display: inline-flex;
+            min-height: 46px;
+            align-items: center;
+            justify-content: center;
+            padding: 0 19px;
+            border: 1px solid var(--teal);
+            border-radius: 4px;
+            background: var(--teal);
+            color: white;
+            font-size: .9rem;
+            font-weight: 700;
+            transition: background .2s ease, transform .2s ease;
+        }
+
+        .nav-contact:hover,
+        .button-primary:hover {
+            transform: translateY(-2px);
+            background: var(--teal-dark);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: relative;
+        }
+
+        .mobile-menu summary {
+            padding: 9px 12px;
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            color: var(--ink);
+            cursor: pointer;
+            font-size: .9rem;
+            font-weight: 700;
+            list-style: none;
+        }
+
+        .mobile-menu summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .mobile-menu nav {
+            position: absolute;
+            top: calc(100% + 12px);
+            right: 0;
+            display: grid;
+            min-width: 210px;
+            gap: 2px;
+            padding: 8px;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            background: var(--surface);
+            box-shadow: 0 12px 30px rgba(23, 36, 33, .12);
+        }
+
+        .mobile-menu nav a {
+            padding: 9px 10px;
+            border-radius: 3px;
+            font-size: .9rem;
+        }
+
+        .mobile-menu nav a:hover {
+            background: var(--teal-soft);
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(72px, 10vw, 132px) 0 82px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .hero-text > * {
+            animation: hero-enter .72s both;
+        }
+
+        .hero-text > :nth-child(2) { animation-delay: .09s; }
+        .hero-text > :nth-child(3) { animation-delay: .17s; }
+        .hero-text > :nth-child(4) { animation-delay: .25s; }
+        .hero-text > :nth-child(5) { animation-delay: .34s; }
+
+        .hero::before {
+            position: absolute;
+            top: -180px;
+            right: -115px;
+            width: 550px;
+            height: 550px;
+            border: 1px solid rgba(21, 94, 99, .12);
+            border-radius: 50%;
+            content: "";
+        }
+
+        .hero::after {
+            position: absolute;
+            top: -110px;
+            right: -45px;
+            width: 410px;
+            height: 410px;
+            border: 1px solid rgba(183, 101, 32, .11);
+            border-radius: 50%;
+            content: "";
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 1.35fr) minmax(270px, .65fr);
+            align-items: center;
+            gap: clamp(42px, 8vw, 112px);
+        }
+
+        .eyebrow,
+        .section-kicker {
+            margin: 0 0 16px;
+            color: var(--teal);
+            font-size: .75rem;
+            font-weight: 800;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            max-width: 760px;
+            margin: 0;
+            font-family: var(--serif);
+            font-size: clamp(3.5rem, 7.5vw, 6.4rem);
+            font-weight: 500;
+            letter-spacing: -.065em;
+            line-height: .99;
+        }
+
+        .hero h1 span {
+            display: block;
+            color: var(--teal);
+        }
+
+        .hero h1 .hero-period {
+            display: inline;
+            color: var(--amber);
+        }
+
+        .hero-role {
+            max-width: 640px;
+            margin: 25px 0 0;
+            color: #40534b;
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            line-height: 1.55;
+        }
+
+        .hero-copy {
+            max-width: 630px;
+            margin: 16px 0 0;
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px 24px;
+            margin-top: 30px;
+        }
+
+        .text-link {
+            display: inline-flex;
+            min-height: 44px;
+            align-items: center;
+            gap: 8px;
+            color: var(--teal-dark);
+            font-size: .9rem;
+            font-weight: 700;
+        }
+
+        .text-link span {
+            transition: transform .2s ease;
+        }
+
+        .text-link:hover span {
+            transform: translateX(4px);
+        }
+
+        .portrait-wrap {
+            position: relative;
+            width: min(100%, 340px);
+            justify-self: end;
+            animation: portrait-settle .9s .16s both;
+        }
+
+        .portrait-frame {
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            aspect-ratio: 4 / 5;
+            border: 9px solid var(--surface);
+            background: #dce7de;
+            box-shadow: 0 20px 60px rgba(23, 36, 33, .13);
+        }
+
+        .portrait-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 35%;
+            transition: transform .6s cubic-bezier(.2, .7, .2, 1);
+        }
+
+        .portrait-wrap:hover .portrait-frame img {
+            transform: scale(1.035);
+        }
+
+        .portrait-caption {
+            position: absolute;
+            z-index: 2;
+            right: -19px;
+            bottom: 22px;
+            padding: 13px 17px;
+            border: 1px solid var(--line);
+            background: var(--surface);
+            box-shadow: 0 8px 24px rgba(23, 36, 33, .09);
+            font-size: .78rem;
+            font-weight: 700;
+        }
+
+        .portrait-caption span {
+            display: block;
+            color: var(--muted);
+            font-size: .7rem;
+            font-weight: 500;
+        }
+
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            border-bottom: 1px solid var(--line);
+            background: var(--line);
+        }
+
+        .highlight {
+            padding: 27px 24px;
+            background: var(--paper);
+            text-align: center;
+        }
+
+        .highlight strong {
+            display: block;
+            color: var(--teal);
+            font-family: var(--serif);
+            font-size: 1.8rem;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        .highlight span {
+            display: block;
+            margin-top: 5px;
+            color: var(--muted);
+            font-size: .78rem;
+        }
+
+        .section {
+            padding-block: clamp(68px, 9vw, 112px);
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 36px;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            font-family: var(--serif);
+            font-size: clamp(2.2rem, 4.4vw, 3.5rem);
+            font-weight: 500;
+            letter-spacing: -.045em;
+            line-height: 1.08;
+        }
+
+        .section-heading > p {
+            max-width: 390px;
+            margin: 0 0 3px;
+            color: var(--muted);
+            font-size: .95rem;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(250px, .8fr);
+            gap: clamp(36px, 7vw, 88px);
+            align-items: start;
+        }
+
+        .about-copy p {
+            margin: 0 0 17px;
+            color: #506159;
+        }
+
+        .about-copy strong {
+            color: var(--ink);
+        }
+
+        .fact-list {
+            display: grid;
+            gap: 0;
+            margin: 0;
+            padding: 0;
+            border-top: 1px solid var(--line);
+            list-style: none;
+        }
+
+        .fact-list li {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 15px;
+            padding: 13px 0;
+            border-bottom: 1px solid var(--line);
+            font-size: .88rem;
+        }
+
+        .fact-list span:first-child {
+            color: var(--muted);
+        }
+
+        .fact-list span:last-child {
+            font-weight: 650;
+        }
+
+        .projects-section {
+            background: #F1EEE6;
+        }
+
+        .projects-section .section {
+            padding-block: clamp(68px, 9vw, 112px);
+        }
+
+        .network-section {
+            overflow: hidden;
+            background: #103F42;
+            color: #f4f5ef;
+        }
+
+        .network-section .section {
+            padding-block: clamp(72px, 9vw, 112px);
+        }
+
+        .network-section .section-kicker {
+            color: #C2E3D4;
+        }
+
+        .network-section .section-heading h2 {
+            color: #fffdf6;
+        }
+
+        .network-section .section-heading > p {
+            color: #c0d0c4;
+        }
+
+        .network-intro {
+            display: grid;
+            grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+            gap: clamp(32px, 6vw, 75px);
+            align-items: center;
+        }
+
+        .network-visual {
+            position: relative;
+            overflow: hidden;
+            min-width: 0;
+            margin: 0;
+            padding: clamp(12px, 2vw, 24px);
+            border: 1px solid rgba(207, 232, 215, .18);
+            background:
+                linear-gradient(rgba(207, 232, 215, .045) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(207, 232, 215, .045) 1px, transparent 1px),
+                #155E63;
+            background-size: 27px 27px;
+        }
+
+        .network-visual::after {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 48%, transparent 28%, rgba(16, 40, 32, .28) 100%);
+            content: "";
+            pointer-events: none;
+        }
+
+        .network-visual svg {
+            position: relative;
+            z-index: 1;
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .network-link {
+            fill: none;
+            stroke: #E6A344;
+            stroke-dasharray: 7 11;
+            stroke-linecap: round;
+            stroke-width: 2;
+            animation: data-flow 2.8s linear infinite;
+        }
+
+        .network-node {
+            fill: #10494D;
+            stroke: #A9D6C4;
+            stroke-width: 1.5;
+        }
+
+        .network-node-center {
+            fill: #155E63;
+            stroke: #F0B55A;
+            stroke-width: 2;
+        }
+
+        .network-label {
+            fill: #f2f5ee;
+            font-family: var(--sans);
+            font-size: 14px;
+            font-weight: 700;
+            text-anchor: middle;
+        }
+
+        .network-sub-label {
+            fill: #b8cbbd;
+            font-family: var(--sans);
+            font-size: 10px;
+            text-anchor: middle;
+        }
+
+        .network-pulse {
+            fill: none;
+            stroke: #F4C46F;
+            stroke-width: 1.5;
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: node-pulse 2s ease-in-out infinite;
+        }
+
+        .network-pulse-delay-1 { animation-delay: .65s; }
+        .network-pulse-delay-2 { animation-delay: 1.3s; }
+
+        .network-legend {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin: 12px 0 0;
+            color: #bfd0c4;
+            font-size: .68rem;
+        }
+
+        .network-captions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .network-caption {
+            padding: 12px 14px;
+            border: 1px solid rgba(207, 232, 215, .16);
+            color: #cbd8cf;
+            font-size: .77rem;
+        }
+
+        .network-caption strong {
+            display: block;
+            margin-bottom: 3px;
+            color: #F0C27A;
+            font-size: .82rem;
+        }
+
+        .network-specialties {
+            display: grid;
+            gap: 19px;
+        }
+
+        .network-specialty {
+            padding: 0 0 19px;
+            border-bottom: 1px solid rgba(207, 232, 215, .19);
+        }
+
+        .network-specialty:last-child {
+            padding-bottom: 0;
+            border-bottom: 0;
+        }
+
+        .network-specialty-heading {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            margin-bottom: 9px;
+        }
+
+        .network-icon {
+            display: grid;
+            width: 33px;
+            height: 33px;
+            flex: 0 0 33px;
+            place-items: center;
+            border: 1px solid rgba(173, 222, 188, .3);
+            color: #C0E2D1;
+            font-size: .69rem;
+            font-weight: 800;
+            letter-spacing: -.03em;
+        }
+
+        .network-specialty h3 {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .network-specialty p {
+            margin: 0;
+            color: #c0d0c4;
+            font-size: .83rem;
+        }
+
+        .network-tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        .network-tools span {
+            padding: 3px 8px;
+            border: 1px solid rgba(173, 222, 188, .2);
+            color: #d6e5d9;
+            font-size: .68rem;
+        }
+
+        .network-note {
+            margin: 24px 0 0;
+            color: #a8c1af;
+            font-size: .72rem;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .project-card {
+            display: flex;
+            min-height: 300px;
+            flex-direction: column;
+            padding: clamp(23px, 3vw, 34px);
+            border: 1px solid #E1DED4;
+            background: var(--surface);
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 36px rgba(23, 36, 33, .09);
+        }
+
+        .project-card:hover .project-number {
+            color: var(--teal);
+        }
+
+        .project-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .project-number {
+            color: #839088;
+            font-family: var(--serif);
+            font-size: .95rem;
+        }
+
+        .project-label {
+            padding: 5px 9px;
+            border: 1px solid #EADBC4;
+            border-radius: 99px;
+            background: #F5EFE3;
+            color: var(--teal-dark);
+            font-size: .67rem;
+            font-weight: 750;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+        }
+
+        .project-card h3 {
+            margin: 0 0 10px;
+            font-family: var(--serif);
+            font-size: clamp(1.45rem, 2.3vw, 1.8rem);
+            font-weight: 500;
+            letter-spacing: -.025em;
+            line-height: 1.2;
+        }
+
+        .project-location {
+            margin: -2px 0 12px;
+            color: var(--teal);
+            font-size: .78rem;
+            font-weight: 700;
+        }
+
+        .project-card > p {
+            margin: 0 0 20px;
+            color: var(--muted);
+            font-size: .9rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-top: auto;
+        }
+
+        .tags span {
+            padding: 5px 9px;
+            border: 1px solid var(--line);
+            border-radius: 3px;
+            color: #46574f;
+            font-size: .7rem;
+            font-weight: 600;
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(260px, .8fr);
+            gap: clamp(40px, 8vw, 100px);
+        }
+
+        .timeline {
+            display: grid;
+            gap: 28px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 0 0 0 24px;
+            border-left: 1px solid #b9c9be;
+        }
+
+        .timeline-item::before {
+            position: absolute;
+            top: 5px;
+            left: -5px;
+            width: 9px;
+            height: 9px;
+            border: 2px solid var(--paper);
+            border-radius: 50%;
+            background: var(--teal);
+            box-shadow: 0 0 0 1px var(--teal);
+            content: "";
+        }
+
+        .timeline-date {
+            color: var(--teal);
+            font-size: .74rem;
+            font-weight: 800;
+            letter-spacing: .07em;
+            text-transform: uppercase;
+        }
+
+        .timeline-item h3 {
+            margin: 5px 0 3px;
+            font-size: 1.08rem;
+        }
+
+        .timeline-place {
+            margin: 0 0 8px;
+            color: var(--muted);
+            font-size: .85rem;
+            font-weight: 600;
+        }
+
+        .timeline-item > p:last-child {
+            margin: 0;
+            color: var(--muted);
+            font-size: .88rem;
+        }
+
+        .education-card {
+            padding: 27px;
+            border: 1px solid var(--line);
+            background: var(--surface);
+        }
+
+        .education-card h3 {
+            margin: 0 0 21px;
+            font-family: var(--serif);
+            font-size: 1.55rem;
+            font-weight: 500;
+        }
+
+        .education-item + .education-item {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--line);
+        }
+
+        .education-item p {
+            margin: 0;
+        }
+
+        .education-item .degree {
+            font-weight: 750;
+        }
+
+        .education-item .school {
+            margin-top: 3px;
+            color: var(--muted);
+            font-size: .86rem;
+        }
+
+        .education-item .mention {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 4px 8px;
+            background: var(--teal-soft);
+            color: var(--teal-dark);
+            font-size: .73rem;
+            font-weight: 750;
+        }
+
+        .skills-section {
+            background: var(--ink);
+            color: #F8F6F0;
+        }
+
+        .skills-section .section {
+            padding-block: clamp(68px, 9vw, 104px);
+        }
+
+        .skills-section .section-kicker {
+            color: #a9d5bc;
+        }
+
+        .skills-section .section-heading > p {
+            color: #b6c3bc;
+        }
+
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            border-top: 1px solid rgba(255, 255, 255, .2);
+            border-left: 1px solid rgba(255, 255, 255, .2);
+        }
+
+        .skill-card {
+            min-height: 200px;
+            padding: 25px;
+            border-right: 1px solid rgba(255, 255, 255, .2);
+            border-bottom: 1px solid rgba(255, 255, 255, .2);
+            transition: background .24s ease, transform .24s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, .055);
+        }
+
+        .skill-card h3 {
+            margin: 0 0 13px;
+            color: #b9dfc8;
+            font-size: .94rem;
+        }
+
+        .skill-card p {
+            margin: 0;
+            color: #d2dbd5;
+            font-size: .84rem;
+            line-height: 1.8;
+        }
+
+        .awards-section {
+            border-bottom: 1px solid var(--line);
+        }
+
+        .awards-list {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .award {
+            padding: 22px;
+            border-top: 3px solid var(--teal);
+            background: var(--surface);
+            transition: transform .22s ease, box-shadow .22s ease;
+        }
+
+        .award:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 26px rgba(23, 36, 33, .08);
+        }
+
+        .motion-enhanced .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity .65s ease, transform .65s cubic-bezier(.2, .7, .2, 1);
+        }
+
+        .motion-enhanced .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .motion-enhanced .reveal-stagger > .reveal:nth-child(2) { transition-delay: .08s; }
+        .motion-enhanced .reveal-stagger > .reveal:nth-child(3) { transition-delay: .16s; }
+        .motion-enhanced .reveal-stagger > .reveal:nth-child(4) { transition-delay: .24s; }
+        .motion-enhanced .reveal-stagger > .reveal:nth-child(5) { transition-delay: .32s; }
+        .motion-enhanced .reveal-stagger > .reveal:nth-child(6) { transition-delay: .4s; }
+
+        .scroll-progress.is-active {
+            animation: signal-pulse 3.2s ease-in-out infinite;
+        }
+
+        .award-rank {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--amber);
+            font-family: var(--serif);
+            font-size: 1.35rem;
+        }
+
+        .award h3 {
+            margin: 0 0 6px;
+            font-size: .97rem;
+        }
+
+        .award p {
+            margin: 0;
+            color: var(--muted);
+            font-size: .82rem;
+        }
+
+        .contact-section {
+            padding-block: clamp(68px, 9vw, 110px);
+        }
+
+        .contact-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            padding: clamp(28px, 5vw, 54px);
+            background: #EAF1EE;
+        }
+
+        .contact-box h2 {
+            margin: 0;
+            font-family: var(--serif);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 500;
+            letter-spacing: -.04em;
+            line-height: 1.15;
+        }
+
+        .contact-box p {
+            max-width: 580px;
+            margin: 10px 0 0;
+            color: var(--muted);
+        }
+
+        .contact-box .button-primary {
+            flex: 0 0 auto;
+        }
+
+        footer {
+            border-top: 1px solid var(--line);
+        }
+
+        .footer-inner {
+            display: flex;
+            min-height: 76px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            color: var(--muted);
+            font-size: .78rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 18px;
+            color: var(--ink);
+            font-weight: 650;
+        }
+
+        @media (max-width: 800px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero-inner {
+                grid-template-columns: minmax(0, 1fr) minmax(220px, .7fr);
+                gap: 36px;
+            }
+
+            .network-intro {
+                grid-template-columns: 1fr;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .skill-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 580px) {
+            .nav-wrap,
+            .section,
+            .hero-inner,
+            .footer-inner {
+                width: min(100% - 36px, var(--max-width));
+            }
+
+            .hero {
+                padding-top: 60px;
+                padding-bottom: 57px;
+            }
+
+            .hero-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: clamp(3.25rem, 16vw, 5.2rem);
+            }
+
+            .hero-actions .button-primary {
+                width: 100%;
+            }
+
+            .hero-actions .text-link:last-child {
+                width: 100%;
+            }
+
+            .network-captions {
+                grid-template-columns: 1fr;
+            }
+
+            .portrait-wrap {
+                width: min(76%, 290px);
+                justify-self: center;
+                margin-top: 4px;
+            }
+
+            .portrait-caption {
+                right: -12px;
+            }
+
+            .highlights {
+                grid-template-columns: 1fr;
+            }
+
+            .highlight {
+                padding: 17px;
+            }
+
+            .highlight strong {
+                font-size: 1.55rem;
+            }
+
+            .section-heading {
+                align-items: start;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 27px;
+            }
+
+            .skill-grid,
+            .awards-list {
+                grid-template-columns: 1fr;
+            }
+
+            .skill-card {
+                min-height: unset;
+                padding: 21px;
+            }
+
+            .contact-box {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .footer-inner {
+                align-items: flex-start;
+                flex-direction: column;
+                justify-content: center;
+                padding-block: 19px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
+                animation-duration: .01ms !important;
+                animation-delay: 0s !important;
+                animation-iteration-count: 1 !important;
+            }
+
+            .hero-text > *,
+            .portrait-wrap,
+            .network-link,
+            .network-pulse {
+                animation: none !important;
+            }
+
+            .motion-enhanced .reveal {
+                opacity: 1;
+                transform: none;
+            }
+
+            .scroll-progress {
+                animation: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-progress" role="progressbar" aria-label="Progression dans la page" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+    <header class="site-header">
+        <div class="nav-wrap">
+            <a class="brand" href="#accueil" aria-label="Élisée Baki, accueil">
+                <span class="brand-mark" aria-hidden="true">EB</span>
+                <span>Élisée Baki</span>
+            </a>
+            <nav class="nav-links" aria-label="Navigation principale">
+                <a href="#profil">Profil</a>
+                <a href="#reseaux">Réseaux</a>
+                <a href="#projets">Projets</a>
+                <a href="#parcours">Parcours</a>
+                <a href="#competences">Autres expertises</a>
+                <a class="nav-contact" href="#contact">Échanger</a>
+            </nav>
+            <details class="mobile-menu">
+                <summary>Menu</summary>
+                <nav aria-label="Navigation mobile">
+                    <a href="#profil">Profil</a>
+                    <a href="#reseaux">Réseaux</a>
+                    <a href="#projets">Projets</a>
+                    <a href="#parcours">Parcours</a>
+                    <a href="#competences">Autres expertises</a>
+                    <a href="#distinctions">Distinctions</a>
+                    <a href="#contact">Échanger</a>
+                </nav>
+            </details>
+        </div>
+    </header>
+
+    <main id="contenu">
+        <section class="hero" id="accueil" aria-labelledby="hero-title">
+            <div class="hero-inner">
+                <div class="hero-text">
+                    <p class="eyebrow">Portfolio · Abidjan, Côte d’Ivoire</p>
+                    <h1 id="hero-title">Élisée <span>Baki<span class="hero-period">.</span></span></h1>
+                    <p class="hero-role">Réseaux informatiques · Télécommunications · IoT</p>
+                    <p class="hero-copy">
+                        Étudiant en Master 1 à l’ESATIC, je conçois et étudie des architectures réseau :
+                        routage, commutation, VLAN, interconnexion sécurisée et supervision. J’explore
+                        aussi les communications LoRa/LoRaWAN et les systèmes embarqués.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="button-primary" href="#projets">Découvrir mes projets</a>
+                        <a class="text-link" href="#parcours">Mon parcours <span aria-hidden="true">→</span></a>
+                        <a class="text-link" href="Portfolio_de_Realisations_Elisee_Baki.pdf" download>Télécharger le portfolio PDF <span aria-hidden="true">↓</span></a>
+                    </div>
+                </div>
+                <div class="portrait-wrap">
+                    <div class="portrait-frame">
+                        <img src="asset/DSC00757.jpg" alt="Portrait d’Élisée Baki" fetchpriority="high">
+                    </div>
+                    <div class="portrait-caption">Étudiant en Master 1<span>Réseaux &amp; Télécommunications · ESATIC</span></div>
+                </div>
+            </div>
+        </section>
+
+        <div class="highlights" aria-label="Repères du parcours">
+            <div class="highlight">
+                <strong>2 × 1er prix</strong>
+                <span>Hackathons ESATIC &amp; SIADE · ForestGuard</span>
+            </div>
+            <div class="highlight">
+                <strong>Mention Très Bien</strong>
+                <span>Licence 3 · Réseaux et Télécommunications</span>
+            </div>
+            <div class="highlight">
+                <strong>2e prix</strong>
+                <span>Technovore ESATIC · projet NEXORA</span>
+            </div>
+        </div>
+
+        <section class="section" id="profil" aria-labelledby="profil-title">
+            <div class="section-heading">
+                <div>
+                    <p class="section-kicker">01 · Profil</p>
+                    <h2 id="profil-title">Relier les idées<br>au terrain.</h2>
+                </div>
+                <p>Un parcours entre infrastructure réseau, objets connectés et projets d’innovation appliquée.</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-copy">
+                    <p>
+                        Après une <strong>Licence 3 Réseaux et Télécommunications obtenue avec la mention
+                        Très Bien</strong>, j’ai intégré le Master 1 de la même spécialité à l’ESATIC en
+                        septembre 2026.
+                    </p>
+                    <p>
+                        Mes projets m’ont amené à travailler sur la collecte de données par capteurs,
+                        les liaisons longue portée, la supervision IoT et l’interconnexion sécurisée de
+                        réseaux. J’apprécie aussi le prototypage et la transmission des savoirs, notamment
+                        à travers des ateliers de robotique et de fabrication numérique.
+                    </p>
+                    <p>
+                        Je cherche à approfondir mes compétences en réseaux et télécommunications tout en
+                        développant des solutions concrètes, adaptées aux contraintes du terrain.
+                    </p>
+                </div>
+                <ul class="fact-list" aria-label="Informations clés">
+                    <li><span>Formation</span><span>Master 1 Réseaux &amp; Télécommunications</span></li>
+                    <li><span>Établissement</span><span>ESATIC · Abidjan</span></li>
+                    <li><span>Diplôme</span><span>Licence 3 · Mention Très Bien</span></li>
+                    <li><span>Domaines</span><span>Réseaux · IoT · Embarqué</span></li>
+                    <li><span>Localisation</span><span>Abidjan, Côte d’Ivoire</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="network-section" id="reseaux" aria-labelledby="reseaux-title">
+            <div class="section">
+                <div class="section-heading reveal">
+                    <div>
+                        <p class="section-kicker">02 · Expertise principale</p>
+                        <h2 id="reseaux-title">Réseaux informatiques.<br>Du routage à la sécurité.</h2>
+                    </div>
+                    <p>
+                        Un socle de compétences construit en formation, en travaux pratiques et en
+                        stage : concevoir, configurer et diagnostiquer des infrastructures réseau.
+                    </p>
+                </div>
+                <div class="network-intro">
+                    <div>
+                        <figure class="network-visual">
+                            <svg viewBox="0 0 720 390" role="img" aria-labelledby="topology-title topology-description">
+                                <title id="topology-title">Schéma animé de segmentation d’un réseau informatique</title>
+                                <desc id="topology-description">Internet passe par un routeur, un pare-feu et un commutateur central, puis se distribue vers des segments distincts pour les utilisateurs, les serveurs, l’IoT et l’administration.</desc>
+
+                                <path class="network-link" d="M360 58 V88"/>
+                                <path class="network-link" d="M360 138 V166"/>
+                                <path class="network-link" d="M360 216 V243"/>
+                                <path class="network-link" d="M360 291 V312 H100 V326"/>
+                                <path class="network-link" d="M360 291 V312 H273 V326"/>
+                                <path class="network-link" d="M360 291 V312 H447 V326"/>
+                                <path class="network-link" d="M360 291 V312 H620 V326"/>
+
+                                <g aria-hidden="true">
+                                    <rect class="network-node" x="291" y="16" width="138" height="42" rx="7"/>
+                                    <circle class="network-pulse network-pulse-delay-1" cx="360" cy="37" r="24"/>
+                                    <text class="network-label" x="360" y="42">INTERNET</text>
+
+                                    <rect class="network-node" x="275" y="88" width="170" height="50" rx="7"/>
+                                    <circle class="network-pulse" cx="360" cy="113" r="40"/>
+                                    <text class="network-label" x="360" y="109">Routeur</text>
+                                    <text class="network-sub-label" x="360" y="126">OSPF · IPv4 / IPv6</text>
+
+                                    <rect class="network-node" x="275" y="166" width="170" height="50" rx="7"/>
+                                    <circle class="network-pulse network-pulse-delay-2" cx="360" cy="191" r="40"/>
+                                    <text class="network-label" x="360" y="187">Pare-feu</text>
+                                    <text class="network-sub-label" x="360" y="204">Filtrage · VPN</text>
+
+                                    <rect class="network-node-center" x="275" y="243" width="170" height="48" rx="7"/>
+                                    <text class="network-label" x="360" y="264">Switch de cœur</text>
+                                    <text class="network-sub-label" x="360" y="280">VLAN · Trunk</text>
+
+                                    <rect class="network-node" x="29" y="326" width="142" height="48" rx="6"/>
+                                    <text class="network-label" x="100" y="347">Utilisateurs</text>
+                                    <text class="network-sub-label" x="100" y="363">VLAN utilisateurs</text>
+
+                                    <rect class="network-node" x="202" y="326" width="142" height="48" rx="6"/>
+                                    <text class="network-label" x="273" y="347">Serveurs</text>
+                                    <text class="network-sub-label" x="273" y="363">VLAN serveurs</text>
+
+                                    <rect class="network-node" x="376" y="326" width="142" height="48" rx="6"/>
+                                    <text class="network-label" x="447" y="347">Objets IoT</text>
+                                    <text class="network-sub-label" x="447" y="363">VLAN IoT</text>
+
+                                    <rect class="network-node" x="549" y="326" width="142" height="48" rx="6"/>
+                                    <text class="network-label" x="620" y="347">Administration</text>
+                                    <text class="network-sub-label" x="620" y="363">VLAN admin</text>
+                                </g>
+                            </svg>
+                            <figcaption class="network-legend">
+                                <span>Architecture de principe</span>
+                                <span>Flux réseau représentés à titre illustratif</span>
+                            </figcaption>
+                        </figure>
+                        <div class="network-captions">
+                            <div class="network-caption">
+                                <strong>Routage &amp; adressage</strong>
+                                Protocoles, sous-réseaux et interconnexion.
+                            </div>
+                            <div class="network-caption">
+                                <strong>Segmentation &amp; sécurité</strong>
+                                VLAN, filtrage et accès distants sécurisés.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="network-specialties reveal-stagger">
+                        <article class="network-specialty reveal">
+                            <div class="network-specialty-heading">
+                                <span class="network-icon" aria-hidden="true">L3</span>
+                                <h3>Routage &amp; adressage IP</h3>
+                            </div>
+                            <p>Étude et configuration du routage dynamique, de l’adressage et des échanges entre réseaux.</p>
+                            <div class="network-tools"><span>TCP/IP</span><span>IPv4 / IPv6</span><span>OSPF</span><span>BGP</span><span>Subnetting</span></div>
+                        </article>
+                        <article class="network-specialty reveal">
+                            <div class="network-specialty-heading">
+                                <span class="network-icon" aria-hidden="true">L2</span>
+                                <h3>Commutation &amp; réseaux d’entreprise</h3>
+                            </div>
+                            <p>Configuration et mise en pratique de réseaux locaux, du câblage à la segmentation logique.</p>
+                            <div class="network-tools"><span>VLAN</span><span>Trunking</span><span>Cisco IOS</span><span>Huawei VRP</span><span>Packet Tracer</span></div>
+                        </article>
+                        <article class="network-specialty reveal">
+                            <div class="network-specialty-heading">
+                                <span class="network-icon" aria-hidden="true">SEC</span>
+                                <h3>Sécurité &amp; interconnexion VPN</h3>
+                            </div>
+                            <p>Principes de filtrage, segmentation et tunnels sécurisés appliqués au projet d’interconnexion multi-sites NEXORA.</p>
+                            <div class="network-tools"><span>pfSense</span><span>OPNsense</span><span>WireGuard</span><span>IPsec</span><span>SSH</span></div>
+                        </article>
+                        <article class="network-specialty reveal">
+                            <div class="network-specialty-heading">
+                                <span class="network-icon" aria-hidden="true">NOC</span>
+                                <h3>Supervision &amp; diagnostic</h3>
+                            </div>
+                            <p>Surveillance des infrastructures et outils de diagnostic réseau étudiés en pratique.</p>
+                            <div class="network-tools"><span>Zabbix</span><span>Nagios</span><span>Wireshark</span><span>Nmap</span></div>
+                        </article>
+                    </div>
+                </div>
+                <p class="network-note">Topologie schématique à visée pédagogique ; elle ne représente pas un réseau déployé.</p>
+            </div>
+        </section>
+
+        <div class="projects-section">
+            <section class="section" id="projets" aria-labelledby="projets-title">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-kicker">03 · Sélection de projets</p>
+                        <h2 id="projets-title">Des systèmes<br>pensés pour le réel.</h2>
+                    </div>
+                    <p>Projets académiques et prototypes : les réalisations sont décrites selon leur niveau d’avancement documenté.</p>
+                </div>
+                <div class="project-grid">
+                    <article class="project-card">
+                        <div class="project-meta">
+                            <span class="project-number">01 / Mémoire de Licence</span>
+                            <span class="project-label">IoT agricole</span>
+                        </div>
+                        <h3>Compteur iTour</h3>
+                        <p class="project-location">Site pilote de Subiakro · Yamoussoukro</p>
+                        <p>
+                            Conception d’une infrastructure IoT pour suivre les tours d’eau d’un périmètre
+                            rizicole. Le projet associe des nœuds de mesure et une supervision des données
+                            afin de faciliter le suivi de l’irrigation.
+                        </p>
+                        <div class="tags" aria-label="Technologies utilisées">
+                            <span>Heltec WiFi LoRa 32 V3</span><span>LoRaWAN</span>
+                            <span>ChirpStack</span><span>React</span><span>Vite</span>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-meta">
+                            <span class="project-number">02 / Hackathons ESATIC &amp; SIADE</span>
+                            <span class="project-label">1er prix · ×2</span>
+                        </div>
+                        <h3>ForestGuard</h3>
+                        <p>
+                            Solution de surveillance environnementale pensée pour les zones forestières
+                            isolées. Des nœuds à base d’ESP32 collectent des données de capteurs et les
+                            transmettent par LoRa vers un point de supervision et d’alerte.
+                        </p>
+                        <div class="tags" aria-label="Technologies utilisées">
+                            <span>ESP32</span><span>LoRa</span><span>Capteurs environnementaux</span>
+                            <span>MQTT</span><span>Supervision</span>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-meta">
+                            <span class="project-number">03 / Technovore ESATIC · Niveau 2 Réseau</span>
+                            <span class="project-label">2e prix</span>
+                        </div>
+                        <h3>NEXORA</h3>
+                        <p>
+                            Projet d’interconnexion sécurisée de sites du secteur judiciaire. L’architecture
+                            étudiée s’appuie sur la segmentation réseau, le filtrage et des tunnels VPN pour
+                            protéger les échanges entre infrastructures.
+                        </p>
+                        <div class="tags" aria-label="Technologies étudiées">
+                            <span>pfSense</span><span>OPNsense</span><span>WireGuard</span>
+                            <span>IPsec</span><span>VLAN</span>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-meta">
+                            <span class="project-number">04 / Prototype IoT agricole</span>
+                            <span class="project-label">Systèmes embarqués</span>
+                        </div>
+                        <h3>AgriSense</h3>
+                        <p>
+                            Prototype ESP32 de suivi de conditions agricoles, avec mesures d’humidité du sol
+                            et de température, et signalisation locale pour accompagner la gestion de
+                            l’irrigation.
+                        </p>
+                        <div class="tags" aria-label="Technologies utilisées">
+                            <span>ESP32</span><span>Capteurs</span><span>Bluetooth</span><span>Wi-Fi</span>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-meta">
+                            <span class="project-number">05 / Collecte locale</span>
+                            <span class="project-label">IoT · Réseau local</span>
+                        </div>
+                        <h3>Journalisation de données IoT</h3>
+                        <p>
+                            Collecte locale de mesures issues de capteurs MQ-7 et MQ-135 connectés à un
+                            ESP32. Les données sont envoyées en JSON par HTTP vers un serveur PHP local,
+                            puis enregistrées avec horodatage.
+                        </p>
+                        <div class="tags" aria-label="Technologies utilisées">
+                            <span>ESP32</span><span>HTTP</span><span>PHP</span><span>JSON</span><span>CSV</span>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-meta">
+                            <span class="project-number">06 / Robotique &amp; commande</span>
+                            <span class="project-label">Atelier pratique</span>
+                        </div>
+                        <h3>Robotique pilotée en Bluetooth</h3>
+                        <p>
+                            Expérimentations de commande de systèmes électroniques et de moteurs avec un
+                            module HC-05, associées à une application mobile réalisée sous MIT App Inventor.
+                        </p>
+                        <div class="tags" aria-label="Technologies utilisées">
+                            <span>Arduino</span><span>HC-05</span><span>MIT App Inventor</span>
+                            <span>Prototypage</span>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </div>
+
+        <section class="section" id="parcours" aria-labelledby="parcours-title">
+            <div class="section-heading">
+                <div>
+                    <p class="section-kicker">04 · Expérience &amp; formation</p>
+                    <h2 id="parcours-title">Apprendre en<br>faisant.</h2>
+                </div>
+            </div>
+            <div class="experience-grid">
+                <ol class="timeline" aria-label="Expériences professionnelles">
+                    <li class="timeline-item">
+                        <p class="timeline-date">Avril – août 2026</p>
+                        <h3>Stage technique en réseaux &amp; IoT</h3>
+                        <p class="timeline-place">CASUR GROUP · Abidjan</p>
+                        <p>
+                            Participation au déploiement d’infrastructures réseau, au câblage structuré,
+                            à la configuration d’équipements et à la maintenance des interconnexions.
+                        </p>
+                    </li>
+                    <li class="timeline-item">
+                        <p class="timeline-date">Engagement STEM</p>
+                        <h3>Robotique &amp; fabrication numérique</h3>
+                        <p class="timeline-place">HFABLAB / STEMLAB</p>
+                        <p>
+                            Ateliers pratiques autour d’Arduino et d’ESP32, accompagnement en robotique,
+                            initiation à la conception 3D, à l’impression 3D et à la découpe laser.
+                        </p>
+                    </li>
+                </ol>
+
+                <aside class="education-card" aria-labelledby="formation-title">
+                    <h3 id="formation-title">Formation</h3>
+                    <div class="education-item">
+                        <p class="degree">Master 1 Réseaux &amp; Télécommunications</p>
+                        <p class="school">ESATIC · Depuis septembre 2026</p>
+                    </div>
+                    <div class="education-item">
+                        <p class="degree">Licence 3 Réseaux &amp; Télécommunications</p>
+                        <p class="school">ESATIC</p>
+                        <span class="mention">Mention Très Bien</span>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <div class="skills-section">
+            <section class="section" id="competences" aria-labelledby="competences-title">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-kicker">05 · Autres expertises</p>
+                        <h2 id="competences-title">Des compétences complémentaires</h2>
+                    </div>
+                    <p>Des savoir-faire mobilisés en appui aux projets réseau, à l’IoT et au prototypage.</p>
+                </div>
+                <div class="skill-grid">
+                    <article class="skill-card">
+                        <h3>IoT &amp; systèmes embarqués</h3>
+                        <p>ESP32, Heltec LoRa 32 V3, Arduino, LoRa/LoRaWAN, ChirpStack, MQTT, HC-05, capteurs.</p>
+                    </article>
+                    <article class="skill-card">
+                        <h3>Développement &amp; données</h3>
+                        <p>Python, JavaScript, PHP, C/C++, React, Vite, Node.js, Express, Flutter, HTTP, JSON, CSV.</p>
+                    </article>
+                    <article class="skill-card">
+                        <h3>Conception &amp; fabrication</h3>
+                        <p>Fusion 360, SolidWorks, Inkscape, Proteus, impression 3D, découpe laser, prototypage électronique.</p>
+                    </article>
+                    <article class="skill-card">
+                        <h3>Outils &amp; environnements</h3>
+                        <p>Git, Docker, Docker Compose, PlatformIO, VS Code, Linux, Packet Tracer.</p>
+                    </article>
+                </div>
+            </section>
+        </div>
+
+        <section class="section awards-section" id="distinctions" aria-labelledby="distinctions-title">
+            <div class="section-heading">
+                <div>
+                    <p class="section-kicker">06 · Distinctions</p>
+                    <h2 id="distinctions-title">Projets récompensés.</h2>
+                </div>
+                <p>Une reconnaissance de l’approche d’équipe, de la conception et de l’innovation portée par ces projets.</p>
+            </div>
+            <div class="awards-list">
+                <article class="award">
+                    <span class="award-rank">1er prix</span>
+                    <h3>Hackathon de rentrée · ESATIC</h3>
+                    <p>ForestGuard · Surveillance environnementale par IoT et LoRa.</p>
+                </article>
+                <article class="award">
+                    <span class="award-rank">1er prix</span>
+                    <h3>Hackathon SIADE</h3>
+                    <p>ForestGuard · Détection précoce des départs d’incendie.</p>
+                </article>
+                <article class="award">
+                    <span class="award-rank">2e prix</span>
+                    <h3>Technovore · ESATIC, niveau 2 réseau</h3>
+                    <p>NEXORA · Interconnexion sécurisée des infrastructures judiciaires.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section contact-section" id="contact" aria-labelledby="contact-title">
+            <div class="contact-box">
+                <div>
+                    <p class="section-kicker">Et maintenant ?</p>
+                    <h2 id="contact-title">Faisons avancer<br>les idées ensemble.</h2>
+                    <p>
+                        Ouvert aux échanges autour des réseaux, des télécommunications, de l’IoT et
+                        des opportunités professionnelles à Abidjan et au-delà.
+                    </p>
+                </div>
+                <a class="button-primary" href="mailto:elisee.baraki@esatic.edu.ci">Me contacter <span aria-hidden="true">→</span></a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <span>© 2026 Élisée Baki · Portfolio professionnel</span>
+            <div class="footer-links">
+                <a href="#accueil">Retour en haut ↑</a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const progressBar = document.querySelector(".scroll-progress");
+        const sectionLinks = document.querySelectorAll(".nav-links a[href^='#']");
+        const navigationSections = document.querySelectorAll(
+            "#profil, #reseaux, #projets, #parcours, #competences, #distinctions, #contact"
+        );
+        let progressFramePending = false;
+
+        function updateActiveNav() {
+            let currentSection = null;
+            const activationLine = Math.min(200, window.innerHeight * .3);
+
+            navigationSections.forEach(section => {
+                if (section.getBoundingClientRect().top <= activationLine) {
+                    currentSection = section;
+                }
+            });
+
+            sectionLinks.forEach(link => {
+                const isCurrent = currentSection !== null && link.hash === `#${currentSection.id}`;
+                link.classList.toggle("is-active", isCurrent);
+                if (isCurrent) {
+                    link.setAttribute("aria-current", "location");
+                } else {
+                    link.removeAttribute("aria-current");
+                }
+            });
+        }
+
+        function updateScrollProgress() {
+            const scrollableDistance = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = scrollableDistance > 0 ? window.scrollY / scrollableDistance : 0;
+            const percentage = Math.round(progress * 100);
+            progressBar.style.transform = `scaleX(${progress})`;
+            progressBar.setAttribute("aria-valuenow", String(percentage));
+            progressBar.classList.toggle("is-active", window.scrollY > 0);
+            updateActiveNav();
+            progressFramePending = false;
+        }
+
+        function scheduleScrollUpdate() {
+            if (!progressFramePending) {
+                progressFramePending = true;
+                window.requestAnimationFrame(updateScrollProgress);
+            }
+        }
+
+        window.addEventListener("scroll", scheduleScrollUpdate, { passive: true });
+        window.addEventListener("resize", scheduleScrollUpdate);
+        updateScrollProgress();
+
+        const mobileMenu = document.querySelector(".mobile-menu");
+        mobileMenu.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                mobileMenu.open = false;
+            });
+        });
+
+        if (document.documentElement.classList.contains("motion-enhanced")) {
+            const revealTargets = document.querySelectorAll(
+                ".section-heading, .about-grid, .network-visual, .network-captions, " +
+                ".network-specialty, .project-card, .timeline-item, .education-card, " +
+                ".skill-card, .award, .contact-box"
+            );
+            document.querySelectorAll(".network-specialties, .project-grid, .skill-grid, .awards-list")
+                .forEach(group => group.classList.add("reveal-stagger"));
+            revealTargets.forEach(target => target.classList.add("reveal"));
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-visible");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+
+            revealTargets.forEach(target => revealObserver.observe(target));
+
+        }
+    </script>
+</body>
+</html>
