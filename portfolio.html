@@ -5,7 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#F8F6F0">
     <meta name="description" content="Portfolio d'Élisée Baki, étudiant en Master 1 Réseaux et Télécommunications à l'ESATIC. Projets IoT, LoRaWAN, systèmes embarqués et réseaux sécurisés.">
+    <meta name="author" content="Élisée Baki">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://bakiportfolionet.netlify.app/">
+    <link rel="alternate" hreflang="fr" href="https://bakiportfolionet.netlify.app/">
+    <link rel="alternate" hreflang="en" href="https://bakiportfolionet.netlify.app/portfolio-en.html">
+    <link rel="alternate" hreflang="x-default" href="https://bakiportfolionet.netlify.app/">
+    <link rel="icon" type="image/svg+xml" href="asset/favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Élisée Baki — Réseaux, Télécommunications & IoT">
+    <meta property="og:title" content="Élisée Baki — Network & IoT Engineering">
+    <meta property="og:description" content="Réseaux, infrastructures sécurisées et systèmes IoT connectés. Découvrez les projets et le parcours d’Élisée Baki.">
+    <meta property="og:url" content="https://bakiportfolionet.netlify.app/">
+    <meta property="og:image" content="https://bakiportfolionet.netlify.app/asset/portfolio-preview.webp">
+    <meta property="og:image:alt" content="Portrait d’Élisée Baki">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://bakiportfolionet.netlify.app/asset/portfolio-preview.webp">
     <title>Élisée Baki — Réseaux, Télécommunications & IoT</title>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Élisée Baki",
+            "url": "https://bakiportfolionet.netlify.app/",
+            "image": "https://bakiportfolionet.netlify.app/asset/portfolio-preview.webp",
+            "jobTitle": "Étudiant en Master Réseaux et Télécommunications",
+            "alumniOf": {
+                "@type": "EducationalOrganization",
+                "name": "ESATIC",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Abidjan",
+                    "addressCountry": "CI"
+                }
+            },
+            "sameAs": ["https://github.com/ELISEE-11"],
+            "knowsAbout": [
+                "Réseaux informatiques",
+                "Télécommunications",
+                "Internet des objets",
+                "Systèmes embarqués",
+                "Sécurité réseau"
+            ]
+        }
+    </script>
     <script>
         if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
             document.documentElement.classList.add("motion-enhanced");
@@ -51,6 +97,31 @@
         @keyframes signal-pulse {
             0%, 100% { opacity: .65; }
             50% { opacity: 1; }
+        }
+
+        @keyframes orbit-drift {
+            0%, 100% { transform: translate3d(0, 0, 0) rotate(0); }
+            50% { transform: translate3d(-16px, 12px, 0) rotate(4deg); }
+        }
+
+        @keyframes portrait-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-7px); }
+        }
+
+        @keyframes scan-sweep {
+            from { transform: translateY(-110%); }
+            to { transform: translateY(360%); }
+        }
+
+        @keyframes menu-enter {
+            from { opacity: 0; transform: translateY(-7px) scale(.985); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes detail-enter {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         *,
@@ -217,10 +288,36 @@
             transition: background .2s ease, transform .2s ease;
         }
 
+        .language-switch {
+            padding: 5px 8px;
+            border: 1px solid var(--line);
+            border-radius: 3px;
+            font-size: .75rem;
+            font-weight: 800;
+            letter-spacing: .06em;
+        }
+
         .nav-contact:hover,
         .button-primary:hover {
             transform: translateY(-2px);
             background: var(--teal-dark);
+            box-shadow: 0 9px 22px rgba(16, 73, 77, .2);
+        }
+
+        .button-primary:active,
+        .nav-contact:active {
+            transform: translateY(0) scale(.98);
+            box-shadow: none;
+        }
+
+        .button-primary span,
+        .nav-contact span {
+            transition: transform .24s cubic-bezier(.2, .7, .2, 1);
+        }
+
+        .button-primary:hover span,
+        .nav-contact:hover span {
+            transform: translateX(4px);
         }
 
         .mobile-menu {
@@ -257,6 +354,11 @@
             box-shadow: 0 12px 30px rgba(23, 36, 33, .12);
         }
 
+        .mobile-menu[open] nav {
+            transform-origin: top right;
+            animation: menu-enter .22s cubic-bezier(.2, .7, .2, 1) both;
+        }
+
         .mobile-menu nav a {
             padding: 9px 10px;
             border-radius: 3px;
@@ -272,6 +374,11 @@
             overflow: hidden;
             padding: clamp(72px, 10vw, 132px) 0 82px;
             border-bottom: 1px solid var(--line);
+        }
+
+        .motion-enhanced .hero::before,
+        .motion-enhanced .hero::after {
+            will-change: transform;
         }
 
         .hero-text > * {
@@ -292,6 +399,7 @@
             border: 1px solid rgba(21, 94, 99, .12);
             border-radius: 50%;
             content: "";
+            animation: orbit-drift 24s ease-in-out infinite;
         }
 
         .hero::after {
@@ -303,6 +411,7 @@
             border: 1px solid rgba(183, 101, 32, .11);
             border-radius: 50%;
             content: "";
+            animation: orbit-drift 30s -9s ease-in-out infinite reverse;
         }
 
         .hero-inner {
@@ -322,6 +431,22 @@
             font-weight: 800;
             letter-spacing: .15em;
             text-transform: uppercase;
+        }
+
+        .motion-enhanced .section-heading .section-kicker::after {
+            display: block;
+            width: 34px;
+            height: 2px;
+            margin-top: 7px;
+            transform: scaleX(0);
+            transform-origin: left;
+            background: var(--amber-light);
+            content: "";
+            transition: transform .48s .12s cubic-bezier(.2, .7, .2, 1);
+        }
+
+        .motion-enhanced .section-heading.is-visible .section-kicker::after {
+            transform: scaleX(1);
         }
 
         .hero h1 {
@@ -389,7 +514,7 @@
             position: relative;
             width: min(100%, 340px);
             justify-self: end;
-            animation: portrait-settle .9s .16s both;
+            animation: portrait-settle .9s .16s both, portrait-float 7s 1.1s ease-in-out infinite;
         }
 
         .portrait-frame {
@@ -414,6 +539,14 @@
             transform: scale(1.035);
         }
 
+        .portrait-frame {
+            transition: box-shadow .4s ease;
+        }
+
+        .portrait-wrap:hover .portrait-frame {
+            box-shadow: 0 28px 72px rgba(21, 94, 99, .2);
+        }
+
         .portrait-caption {
             position: absolute;
             z-index: 2;
@@ -436,7 +569,7 @@
 
         .highlights {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, minmax(0, 1fr));
             gap: 1px;
             border-bottom: 1px solid var(--line);
             background: var(--line);
@@ -585,8 +718,23 @@
             background-size: 27px 27px;
         }
 
+        .network-visual::before {
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 34%;
+            transform: translateY(-110%);
+            background: linear-gradient(180deg, transparent, rgba(230, 163, 68, .11), transparent);
+            content: "";
+            pointer-events: none;
+            animation: scan-sweep 8s 1.2s ease-in-out infinite;
+        }
+
         .network-visual::after {
             position: absolute;
+            z-index: 1;
             inset: 0;
             background: radial-gradient(ellipse at 50% 48%, transparent 28%, rgba(16, 40, 32, .28) 100%);
             content: "";
@@ -595,7 +743,7 @@
 
         .network-visual svg {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             display: block;
             width: 100%;
             height: auto;
@@ -610,6 +758,12 @@
             animation: data-flow 2.8s linear infinite;
         }
 
+        .network-link:nth-of-type(2) { animation-delay: .28s; }
+        .network-link:nth-of-type(3) { animation-delay: .56s; }
+        .network-link:nth-of-type(4) { animation-delay: .84s; }
+        .network-link:nth-of-type(5) { animation-delay: 1.12s; }
+        .network-link:nth-of-type(6) { animation-delay: 1.4s; }
+        .network-link:nth-of-type(7) { animation-delay: 1.68s; }
         .network-node {
             fill: #10494D;
             stroke: #A9D6C4;
@@ -687,6 +841,21 @@
         .network-specialty {
             padding: 0 0 19px;
             border-bottom: 1px solid rgba(207, 232, 215, .19);
+            transition: transform .28s cubic-bezier(.2, .7, .2, 1);
+        }
+
+        .network-specialty:hover {
+            transform: translateX(5px);
+        }
+
+        .network-icon {
+            transition: color .25s ease, border-color .25s ease, transform .35s cubic-bezier(.2, .7, .2, 1);
+        }
+
+        .network-specialty:hover .network-icon {
+            transform: rotate(-6deg) scale(1.06);
+            border-color: rgba(240, 194, 122, .65);
+            color: #F0C27A;
         }
 
         .network-specialty:last-child {
@@ -752,22 +921,54 @@
         }
 
         .project-card {
+            position: relative;
+            isolation: isolate;
             display: flex;
             min-height: 300px;
             flex-direction: column;
             padding: clamp(23px, 3vw, 34px);
             border: 1px solid #E1DED4;
             background: var(--surface);
-            transition: transform .2s ease, box-shadow .2s ease;
+            transition: transform .34s cubic-bezier(.2, .7, .2, 1), box-shadow .34s ease, border-color .34s ease;
         }
 
-        .project-card:hover {
-            transform: translateY(-4px);
+        .project-card::before {
+            position: absolute;
+            z-index: 0;
+            top: -1px;
+            right: 0;
+            left: 0;
+            height: 3px;
+            transform: scaleX(0);
+            transform-origin: left;
+            background: linear-gradient(90deg, var(--teal), var(--amber-light));
+            content: "";
+            transition: transform .4s cubic-bezier(.2, .7, .2, 1);
+        }
+
+        .project-card:hover,
+        .project-card:focus-within {
+            transform: translateY(-6px);
+            border-color: rgba(21, 94, 99, .28);
             box-shadow: 0 16px 36px rgba(23, 36, 33, .09);
+        }
+
+        .project-card:hover::before,
+        .project-card:focus-within::before {
+            transform: scaleX(1);
         }
 
         .project-card:hover .project-number {
             color: var(--teal);
+        }
+
+        .project-card h3 {
+            transition: color .24s ease, transform .3s cubic-bezier(.2, .7, .2, 1);
+        }
+
+        .project-card:hover h3 {
+            transform: translateX(3px);
+            color: var(--teal-dark);
         }
 
         .project-meta {
@@ -818,6 +1019,73 @@
             font-size: .9rem;
         }
 
+        .project-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin: 0 0 15px;
+            color: #53645c;
+            font-size: .73rem;
+            font-weight: 700;
+        }
+
+        .project-status::before {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--amber-light);
+            content: "";
+        }
+
+        .project-details {
+            margin-top: 20px;
+            border-top: 1px solid var(--line);
+        }
+
+        .project-details summary {
+            padding: 13px 0 2px;
+            color: var(--teal-dark);
+            cursor: pointer;
+            font-size: .8rem;
+            font-weight: 750;
+        }
+
+        .project-details summary:hover {
+            color: var(--amber);
+        }
+
+        .project-details[open] .project-details-body {
+            animation: detail-enter .28s ease both;
+        }
+
+        .project-details-body {
+            display: grid;
+            gap: 13px;
+            padding: 12px 0 0;
+        }
+
+        .project-details-body h4 {
+            margin: 0 0 3px;
+            color: var(--ink);
+            font-size: .76rem;
+        }
+
+        .project-details-body p {
+            margin: 0;
+            color: var(--muted);
+            font-size: .79rem;
+        }
+
+        .project-architecture {
+            display: block;
+            padding: 9px 10px;
+            border-left: 2px solid var(--amber-light);
+            background: #F7F5EF;
+            color: #394b44;
+            font-size: .75rem;
+            line-height: 1.65;
+        }
+
         .tags {
             display: flex;
             flex-wrap: wrap;
@@ -865,6 +1133,12 @@
             background: var(--teal);
             box-shadow: 0 0 0 1px var(--teal);
             content: "";
+            transition: transform .28s ease, box-shadow .28s ease;
+        }
+
+        .timeline-item:hover::before {
+            transform: scale(1.35);
+            box-shadow: 0 0 0 4px rgba(21, 94, 99, .12);
         }
 
         .timeline-date {
@@ -969,8 +1243,9 @@
         }
 
         .skill-card:hover {
-            transform: translateY(-3px);
+            transform: translateY(-5px);
             background: rgba(255, 255, 255, .055);
+            box-shadow: 0 12px 26px rgba(0, 0, 0, .13);
         }
 
         .skill-card h3 {
@@ -984,6 +1259,16 @@
             color: #d2dbd5;
             font-size: .84rem;
             line-height: 1.8;
+        }
+
+        .skill-card .skill-context {
+            display: block;
+            margin-bottom: 9px;
+            color: #efc477;
+            font-size: .7rem;
+            font-weight: 750;
+            letter-spacing: .06em;
+            text-transform: uppercase;
         }
 
         .awards-section {
@@ -1010,13 +1295,13 @@
 
         .motion-enhanced .reveal {
             opacity: 0;
-            transform: translateY(22px);
-            transition: opacity .65s ease, transform .65s cubic-bezier(.2, .7, .2, 1);
+            transform: translateY(24px) scale(.99);
+            transition: opacity .68s ease, transform .68s cubic-bezier(.2, .7, .2, 1);
         }
 
         .motion-enhanced .reveal.is-visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
         .motion-enhanced .reveal-stagger > .reveal:nth-child(2) { transition-delay: .08s; }
@@ -1131,6 +1416,10 @@
             .skill-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
+
+            .highlights {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
         }
 
         @media (max-width: 580px) {
@@ -1178,6 +1467,10 @@
 
             .highlights {
                 grid-template-columns: 1fr;
+            }
+
+            .highlight {
+                text-align: left;
             }
 
             .highlight {
@@ -1262,23 +1555,24 @@
                 <span>Élisée Baki</span>
             </a>
             <nav class="nav-links" aria-label="Navigation principale">
-                <a href="#profil">Profil</a>
-                <a href="#reseaux">Réseaux</a>
+                <a href="#profil">À propos</a>
+                <a href="#reseaux">Expertises</a>
                 <a href="#projets">Projets</a>
-                <a href="#parcours">Parcours</a>
-                <a href="#competences">Autres expertises</a>
-                <a class="nav-contact" href="#contact">Échanger</a>
+                <a href="#parcours">Expériences</a>
+                <a href="#distinctions">Distinctions</a>
+                <a class="nav-contact" href="#contact">Contact</a>
+                <a class="language-switch" href="portfolio-en.html" hreflang="en" lang="en" aria-label="Read this portfolio in English">EN</a>
             </nav>
             <details class="mobile-menu">
                 <summary>Menu</summary>
                 <nav aria-label="Navigation mobile">
-                    <a href="#profil">Profil</a>
-                    <a href="#reseaux">Réseaux</a>
+                    <a href="#profil">À propos</a>
+                    <a href="#reseaux">Expertises</a>
                     <a href="#projets">Projets</a>
-                    <a href="#parcours">Parcours</a>
-                    <a href="#competences">Autres expertises</a>
+                    <a href="#parcours">Expériences</a>
                     <a href="#distinctions">Distinctions</a>
-                    <a href="#contact">Échanger</a>
+                    <a href="#contact">Contact</a>
+                    <a href="portfolio-en.html" hreflang="en" lang="en">English version · EN</a>
                 </nav>
             </details>
         </div>
@@ -1288,25 +1582,27 @@
         <section class="hero" id="accueil" aria-labelledby="hero-title">
             <div class="hero-inner">
                 <div class="hero-text">
-                    <p class="eyebrow">Portfolio · Abidjan, Côte d’Ivoire</p>
+                    <p class="eyebrow">Network &amp; IoT Engineering · Abidjan, Côte d’Ivoire</p>
                     <h1 id="hero-title">Élisée <span>Baki<span class="hero-period">.</span></span></h1>
-                    <p class="hero-role">Réseaux informatiques · Télécommunications · IoT</p>
+                    <p class="hero-role"><span lang="en">Network &amp; IoT Engineering</span> · Infrastructures sécurisées · Systèmes connectés</p>
                     <p class="hero-copy">
-                        Étudiant en Master 1 à l’ESATIC, je conçois et étudie des architectures réseau :
-                        routage, commutation, VLAN, interconnexion sécurisée et supervision. J’explore
-                        aussi les communications LoRa/LoRaWAN et les systèmes embarqués.
+                        En Master 1 Réseaux et Télécommunications à l’ESATIC, je travaille sur des
+                        architectures réseau, l’interconnexion sécurisée de sites et des systèmes IoT
+                        longue portée. De la topologie au prototype, chaque projet précise son niveau
+                        réel d’avancement.
                     </p>
                     <div class="hero-actions">
-                        <a class="button-primary" href="#projets">Découvrir mes projets</a>
-                        <a class="text-link" href="#parcours">Mon parcours <span aria-hidden="true">→</span></a>
-                        <a class="text-link" href="Portfolio_de_Realisations_Elisee_Baki.pdf" download>Télécharger le portfolio PDF <span aria-hidden="true">↓</span></a>
+                        <a class="button-primary" href="#projets">Voir mes réalisations <span aria-hidden="true">→</span></a>
+                        <a class="text-link" href="https://github.com/ELISEE-11" target="_blank" rel="noopener noreferrer">Explorer mon GitHub <span aria-hidden="true">↗</span></a>
+                        <a class="text-link" href="CV-BAKI_FRANCK_ELISEE.pdf" download>Télécharger mon CV <span aria-hidden="true">↓</span></a>
+                        <a class="text-link" href="#contact">Me contacter <span aria-hidden="true">→</span></a>
                     </div>
                 </div>
                 <div class="portrait-wrap">
                     <div class="portrait-frame">
-                        <img src="asset/DSC00757.jpg" alt="Portrait d’Élisée Baki" fetchpriority="high">
+                        <img src="asset/portrait-elisee-baki.webp" alt="Portrait d’Élisée Baki" width="1400" height="2100" fetchpriority="high">
                     </div>
-                    <div class="portrait-caption">Étudiant en Master 1<span>Réseaux &amp; Télécommunications · ESATIC</span></div>
+                    <div class="portrait-caption">Master 1 · ESATIC<span>Réseaux &amp; Télécommunications</span></div>
                 </div>
             </div>
         </section>
@@ -1314,7 +1610,7 @@
         <div class="highlights" aria-label="Repères du parcours">
             <div class="highlight">
                 <strong>2 × 1er prix</strong>
-                <span>Hackathons ESATIC &amp; SIADE · ForestGuard</span>
+                <span>Distinctions ForestGuard · ESATIC &amp; SIADE</span>
             </div>
             <div class="highlight">
                 <strong>Mention Très Bien</strong>
@@ -1324,15 +1620,19 @@
                 <strong>2e prix</strong>
                 <span>Technovore ESATIC · projet NEXORA</span>
             </div>
+            <div class="highlight">
+                <strong>Master 1</strong>
+                <span>Réseaux &amp; Télécommunications · ESATIC</span>
+            </div>
         </div>
 
         <section class="section" id="profil" aria-labelledby="profil-title">
             <div class="section-heading">
                 <div>
                     <p class="section-kicker">01 · Profil</p>
-                    <h2 id="profil-title">Relier les idées<br>au terrain.</h2>
+                    <h2 id="profil-title">Des réseaux<br>aux systèmes connectés.</h2>
                 </div>
-                <p>Un parcours entre infrastructure réseau, objets connectés et projets d’innovation appliquée.</p>
+                <p>Concevoir, prototyper et documenter des solutions adaptées à leurs contraintes techniques et à leur contexte d’usage.</p>
             </div>
             <div class="about-grid">
                 <div class="about-copy">
@@ -1348,8 +1648,8 @@
                         à travers des ateliers de robotique et de fabrication numérique.
                     </p>
                     <p>
-                        Je cherche à approfondir mes compétences en réseaux et télécommunications tout en
-                        développant des solutions concrètes, adaptées aux contraintes du terrain.
+                        Mon approche privilégie des architectures lisibles, des choix techniques expliqués
+                        et une distinction claire entre ce qui est réalisé, testé ou encore à l’étude.
                     </p>
                 </div>
                 <ul class="fact-list" aria-label="Informations clés">
@@ -1465,7 +1765,7 @@
                                 <h3>Sécurité &amp; interconnexion VPN</h3>
                             </div>
                             <p>Principes de filtrage, segmentation et tunnels sécurisés appliqués au projet d’interconnexion multi-sites NEXORA.</p>
-                            <div class="network-tools"><span>pfSense</span><span>OPNsense</span><span>WireGuard</span><span>IPsec</span><span>SSH</span></div>
+                            <div class="network-tools"><span>pfSense</span><span>OpenVPN</span><span>WireGuard</span><span>IPsec</span><span>VLAN</span><span>SSH</span></div>
                         </article>
                         <article class="network-specialty reveal">
                             <div class="network-specialty-heading">
@@ -1488,7 +1788,7 @@
                         <p class="section-kicker">03 · Sélection de projets</p>
                         <h2 id="projets-title">Des systèmes<br>pensés pour le réel.</h2>
                     </div>
-                    <p>Projets académiques et prototypes : les réalisations sont décrites selon leur niveau d’avancement documenté.</p>
+                    <p>Les fiches distinguent le contexte, les choix d’architecture et le niveau d’avancement, sans revendiquer de déploiement ou de résultat non documenté.</p>
                 </div>
                 <div class="project-grid">
                     <article class="project-card">
@@ -1498,15 +1798,23 @@
                         </div>
                         <h3>Compteur iTour</h3>
                         <p class="project-location">Site pilote de Subiakro · Yamoussoukro</p>
+                        <p class="project-status">Conception et prototypage académique</p>
                         <p>
-                            Conception d’une infrastructure IoT pour suivre les tours d’eau d’un périmètre
-                            rizicole. Le projet associe des nœuds de mesure et une supervision des données
-                            afin de faciliter le suivi de l’irrigation.
+                            Concevoir un système de suivi des tours d’eau pour le périmètre rizicole de
+                            Subiakro, en reliant la mesure sur le terrain à une supervision exploitable.
                         </p>
-                        <div class="tags" aria-label="Technologies utilisées">
+                        <div class="tags" aria-label="Technologies et architecture étudiées">
                             <span>Heltec WiFi LoRa 32 V3</span><span>LoRaWAN</span>
                             <span>ChirpStack</span><span>React</span><span>Vite</span>
                         </div>
+                        <details class="project-details">
+                            <summary>Contexte, architecture et limites</summary>
+                            <div class="project-details-body">
+                                <div><h4>Problématique</h4><p>Faciliter le suivi des tours d’eau sur un périmètre rizicole où les points de mesure sont éloignés.</p></div>
+                                <div><h4>Architecture étudiée</h4><p class="project-architecture">Nœud Heltec / capteur de débit → liaison LoRaWAN → passerelle et ChirpStack → supervision web React / Vite.</p></div>
+                                <div><h4>Contexte et statut</h4><p>Projet conçu autour du site de Subiakro, à Yamoussoukro. Présenté comme conception / prototype ; aucun résultat chiffré ni déploiement opérationnel n’est revendiqué ici.</p></div>
+                            </div>
+                        </details>
                     </article>
 
                     <article class="project-card">
@@ -1515,15 +1823,23 @@
                             <span class="project-label">1er prix · ×2</span>
                         </div>
                         <h3>ForestGuard</h3>
+                        <p class="project-status">Projet primé · prototype / conception</p>
                         <p>
-                            Solution de surveillance environnementale pensée pour les zones forestières
-                            isolées. Des nœuds à base d’ESP32 collectent des données de capteurs et les
-                            transmettent par LoRa vers un point de supervision et d’alerte.
+                            Imaginer la surveillance de zones forestières isolées grâce à des nœuds IoT
+                            basse consommation, une liaison longue portée et un système de supervision.
                         </p>
-                        <div class="tags" aria-label="Technologies utilisées">
+                        <div class="tags" aria-label="Technologies et architecture envisagées">
                             <span>ESP32</span><span>LoRa</span><span>Capteurs environnementaux</span>
                             <span>MQTT</span><span>Supervision</span>
                         </div>
+                        <details class="project-details">
+                            <summary>Contexte, architecture et distinctions</summary>
+                            <div class="project-details-body">
+                                <div><h4>Problématique</h4><p>Faire remonter des observations depuis des zones forestières où la connectivité classique est limitée.</p></div>
+                                <div><h4>Architecture envisagée</h4><p class="project-architecture">Capteurs environnementaux → nœuds ESP32 → liaison LoRa → réception et supervision / alertes.</p></div>
+                                <div><h4>Statut et preuves</h4><p>Projet récompensé par un premier prix au hackathon de rentrée ESATIC et au SIADE. Les éléments sont présentés comme conception / prototype ; aucun déploiement en forêt n’est affirmé.</p></div>
+                            </div>
+                        </details>
                     </article>
 
                     <article class="project-card">
@@ -1532,15 +1848,23 @@
                             <span class="project-label">2e prix</span>
                         </div>
                         <h3>NEXORA</h3>
+                        <p class="project-status">Prototype de laboratoire · pas de déploiement en production</p>
                         <p>
-                            Projet d’interconnexion sécurisée de sites du secteur judiciaire. L’architecture
-                            étudiée s’appuie sur la segmentation réseau, le filtrage et des tunnels VPN pour
-                            protéger les échanges entre infrastructures.
+                            Concevoir et prototyper en laboratoire l’interconnexion sécurisée de sites du
+                            secteur judiciaire, avec segmentation, filtrage et accès VPN.
                         </p>
                         <div class="tags" aria-label="Technologies étudiées">
-                            <span>pfSense</span><span>OPNsense</span><span>WireGuard</span>
-                            <span>IPsec</span><span>VLAN</span>
+                            <span>pfSense</span><span>OpenVPN</span><span>WireGuard</span>
+                            <span>IPsec</span><span>VLAN</span><span>Hub-and-spoke</span>
                         </div>
+                        <details class="project-details">
+                            <summary>Problème, architecture et périmètre</summary>
+                            <div class="project-details-body">
+                                <div><h4>Problématique</h4><p>Protéger les échanges entre plusieurs sites par une architecture segmentée et des tunnels chiffrés.</p></div>
+                                <div><h4>Approche de laboratoire</h4><p class="project-architecture">Sites distants → tunnels VPN → nœud central (hub-and-spoke) ; filtrage et VLAN sur des pare-feu pfSense. WireGuard, OpenVPN et IPsec sont des approches étudiées, pas des déploiements tous revendiqués.</p></div>
+                                <div><h4>Distinction et limite</h4><p>Deuxième prix au Technovore Hackathon ESATIC, niveau 2 réseau. Prototype en laboratoire uniquement ; aucun déploiement en production.</p></div>
+                            </div>
+                        </details>
                     </article>
 
                     <article class="project-card">
@@ -1549,6 +1873,7 @@
                             <span class="project-label">Systèmes embarqués</span>
                         </div>
                         <h3>AgriSense</h3>
+                        <p class="project-status">Prototype IoT</p>
                         <p>
                             Prototype ESP32 de suivi de conditions agricoles, avec mesures d’humidité du sol
                             et de température, et signalisation locale pour accompagner la gestion de
@@ -1557,6 +1882,13 @@
                         <div class="tags" aria-label="Technologies utilisées">
                             <span>ESP32</span><span>Capteurs</span><span>Bluetooth</span><span>Wi-Fi</span>
                         </div>
+                        <details class="project-details">
+                            <summary>Fonctionnement et périmètre</summary>
+                            <div class="project-details-body">
+                                <div><h4>Architecture</h4><p class="project-architecture">Capteurs d’humidité et de température → ESP32 → signalisation locale.</p></div>
+                                <div><h4>Statut</h4><p>Prototype ; les fonctions futures de supervision ou d’automatisation ne sont pas présentées comme déjà déployées.</p></div>
+                            </div>
+                        </details>
                     </article>
 
                     <article class="project-card">
@@ -1565,6 +1897,7 @@
                             <span class="project-label">IoT · Réseau local</span>
                         </div>
                         <h3>Journalisation de données IoT</h3>
+                        <p class="project-status">Expérimentation locale</p>
                         <p>
                             Collecte locale de mesures issues de capteurs MQ-7 et MQ-135 connectés à un
                             ESP32. Les données sont envoyées en JSON par HTTP vers un serveur PHP local,
@@ -1573,6 +1906,13 @@
                         <div class="tags" aria-label="Technologies utilisées">
                             <span>ESP32</span><span>HTTP</span><span>PHP</span><span>JSON</span><span>CSV</span>
                         </div>
+                        <details class="project-details">
+                            <summary>Flux de données et périmètre</summary>
+                            <div class="project-details-body">
+                                <div><h4>Architecture</h4><p class="project-architecture">Capteurs MQ-7 / MQ-135 → ESP32 → requête HTTP / JSON → serveur PHP local → journal horodaté.</p></div>
+                                <div><h4>Statut</h4><p>Collecte et journalisation sur réseau local. Aucun résultat de performance ou test de charge n’est revendiqué.</p></div>
+                            </div>
+                        </details>
                     </article>
 
                     <article class="project-card">
@@ -1581,6 +1921,7 @@
                             <span class="project-label">Atelier pratique</span>
                         </div>
                         <h3>Robotique pilotée en Bluetooth</h3>
+                        <p class="project-status">Expérimentation pédagogique</p>
                         <p>
                             Expérimentations de commande de systèmes électroniques et de moteurs avec un
                             module HC-05, associées à une application mobile réalisée sous MIT App Inventor.
@@ -1589,6 +1930,13 @@
                             <span>Arduino</span><span>HC-05</span><span>MIT App Inventor</span>
                             <span>Prototypage</span>
                         </div>
+                        <details class="project-details">
+                            <summary>Architecture et apprentissages</summary>
+                            <div class="project-details-body">
+                                <div><h4>Architecture</h4><p class="project-architecture">Application MIT App Inventor → Bluetooth HC-05 → Arduino / électronique de commande → moteurs.</p></div>
+                                <div><h4>Statut</h4><p>Expérimentations et ateliers de prototypage ; aucune mise en production n’est revendiquée.</p></div>
+                            </div>
+                        </details>
                     </article>
                 </div>
             </section>
@@ -1598,7 +1946,7 @@
             <div class="section-heading">
                 <div>
                     <p class="section-kicker">04 · Expérience &amp; formation</p>
-                    <h2 id="parcours-title">Apprendre en<br>faisant.</h2>
+                    <h2 id="parcours-title">Expérience<br>&amp; formation.</h2>
                 </div>
             </div>
             <div class="experience-grid">
@@ -1613,7 +1961,7 @@
                         </p>
                     </li>
                     <li class="timeline-item">
-                        <p class="timeline-date">Engagement STEM</p>
+                        <p class="timeline-date">2024–2025 · Stage HFABLAB</p>
                         <h3>Robotique &amp; fabrication numérique</h3>
                         <p class="timeline-place">HFABLAB / STEMLAB</p>
                         <p>
@@ -1642,27 +1990,41 @@
             <section class="section" id="competences" aria-labelledby="competences-title">
                 <div class="section-heading">
                     <div>
-                        <p class="section-kicker">05 · Autres expertises</p>
-                        <h2 id="competences-title">Des compétences complémentaires</h2>
+                        <p class="section-kicker">05 · Expertises complémentaires</p>
+                        <h2 id="competences-title">Du réseau aux systèmes connectés.</h2>
                     </div>
-                    <p>Des savoir-faire mobilisés en appui aux projets réseau, à l’IoT et au prototypage.</p>
+                    <p>Outils et technologies présentés par domaine, sans jauges ni niveaux de maîtrise arbitraires.</p>
                 </div>
                 <div class="skill-grid">
                     <article class="skill-card">
-                        <h3>IoT &amp; systèmes embarqués</h3>
-                        <p>ESP32, Heltec LoRa 32 V3, Arduino, LoRa/LoRaWAN, ChirpStack, MQTT, HC-05, capteurs.</p>
+                        <h3>Network &amp; Infrastructure Engineering</h3>
+                        <span class="skill-context">Pratique en cours et travaux pratiques</span>
+                        <p>Adressage IPv4/IPv6, configuration de routeurs et switches, VLAN, trunks, routage, Cisco IOS, Huawei VRP, Packet Tracer, GNS3 et diagnostic réseau.</p>
+                    </article>
+                    <article class="skill-card">
+                        <h3>IoT &amp; Connected Systems</h3>
+                        <span class="skill-context">Prototypage et expérimentation</span>
+                        <p>ESP32, Arduino, capteurs, LoRa/LoRaWAN, modules Heltec, collecte de données, HTTP, JSON et journalisation locale.</p>
+                    </article>
+                    <article class="skill-card">
+                        <h3>Network Security &amp; Automation</h3>
+                        <span class="skill-context">Étude et laboratoire</span>
+                        <p>Segmentation, VLAN, filtrage, principes VPN, pfSense, WireGuard, IPsec, OpenVPN et SSH ; aucune mise en production n’est revendiquée pour NEXORA.</p>
+                    </article>
+                    <article class="skill-card">
+                        <h3>Systèmes &amp; environnements</h3>
+                        <span class="skill-context">Outils mobilisés en projets</span>
+                        <p>Linux, administration de base, SSH, VirtualBox, Git, Docker, Docker Compose, PlatformIO et VS Code.</p>
                     </article>
                     <article class="skill-card">
                         <h3>Développement &amp; données</h3>
-                        <p>Python, JavaScript, PHP, C/C++, React, Vite, Node.js, Express, Flutter, HTTP, JSON, CSV.</p>
+                        <span class="skill-context">Prototypage logiciel</span>
+                        <p>Python, PHP, JavaScript, C/C++, React, Vite, Node.js, Express, Flutter, API HTTP, JSON et CSV.</p>
                     </article>
                     <article class="skill-card">
                         <h3>Conception &amp; fabrication</h3>
-                        <p>Fusion 360, SolidWorks, Inkscape, Proteus, impression 3D, découpe laser, prototypage électronique.</p>
-                    </article>
-                    <article class="skill-card">
-                        <h3>Outils &amp; environnements</h3>
-                        <p>Git, Docker, Docker Compose, PlatformIO, VS Code, Linux, Packet Tracer.</p>
+                        <span class="skill-context">Ateliers et prototypage</span>
+                        <p>Proteus, Fusion 360, SolidWorks, SketchUp, Inkscape, Cura, impression 3D, découpe laser et prototypage électronique.</p>
                     </article>
                 </div>
             </section>
@@ -1674,7 +2036,7 @@
                     <p class="section-kicker">06 · Distinctions</p>
                     <h2 id="distinctions-title">Projets récompensés.</h2>
                 </div>
-                <p>Une reconnaissance de l’approche d’équipe, de la conception et de l’innovation portée par ces projets.</p>
+                <p>Distinctions liées aux projets ; les prix sont attribués aux projets / équipes et ne sont pas présentés comme des certifications individuelles.</p>
             </div>
             <div class="awards-list">
                 <article class="award">
@@ -1692,6 +2054,11 @@
                     <h3>Technovore · ESATIC, niveau 2 réseau</h3>
                     <p>NEXORA · Interconnexion sécurisée des infrastructures judiciaires.</p>
                 </article>
+                <article class="award">
+                    <span class="award-rank">Mention Très Bien</span>
+                    <h3>Licence 3 · Réseaux &amp; Télécommunications</h3>
+                    <p>Distinction académique obtenue à l’ESATIC.</p>
+                </article>
             </div>
         </section>
 
@@ -1705,7 +2072,7 @@
                         des opportunités professionnelles à Abidjan et au-delà.
                     </p>
                 </div>
-                <a class="button-primary" href="mailto:elisee.baraki@esatic.edu.ci">Me contacter <span aria-hidden="true">→</span></a>
+                <a class="button-primary" href="mailto:bakielisee75@gmail.com">Écrire à Élisée <span aria-hidden="true">→</span></a>
             </div>
         </section>
     </main>
@@ -1715,6 +2082,8 @@
             <span>© 2026 Élisée Baki · Portfolio professionnel</span>
             <div class="footer-links">
                 <a href="https://github.com/ELISEE-11" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                <a href="mailto:bakielisee75@gmail.com">Courriel</a>
+                <a href="#accueil">Retour en haut ↑</a>
             </div>
         </div>
     </footer>
@@ -1780,9 +2149,9 @@
             const revealTargets = document.querySelectorAll(
                 ".section-heading, .about-grid, .network-visual, .network-captions, " +
                 ".network-specialty, .project-card, .timeline-item, .education-card, " +
-                ".skill-card, .award, .contact-box"
+                ".skill-card, .award, .contact-box, .highlight"
             );
-            document.querySelectorAll(".network-specialties, .project-grid, .skill-grid, .awards-list")
+            document.querySelectorAll(".highlights, .network-specialties, .project-grid, .skill-grid, .awards-list")
                 .forEach(group => group.classList.add("reveal-stagger"));
             revealTargets.forEach(target => target.classList.add("reveal"));
 

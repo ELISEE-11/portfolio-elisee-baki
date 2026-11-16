@@ -1,18 +1,24 @@
-# Portfolio d'Élisée Baki
+# Portfolio d’Élisée Baki
 
-Portfolio professionnel consacré aux réseaux informatiques, aux télécommunications et à l'Internet des objets.
+Portfolio professionnel d’un étudiant en Master 1 Réseaux et Télécommunications à l’ESATIC, centré sur les réseaux, les infrastructures sécurisées et les systèmes IoT.
 
-- **Portfolio en ligne :** [bakiportfolionet.netlify.app](https://bakiportfolionet.netlify.app)
-- **Profil :** étudiant en Master 1 Réseaux et Télécommunications à l'ESATIC, Abidjan.
+- **Site :** [bakiportfolionet.netlify.app](https://bakiportfolionet.netlify.app)
+- **GitHub :** [ELISEE-11](https://github.com/ELISEE-11)
+- **Contact :** [bakielisee75@gmail.com](mailto:bakielisee75@gmail.com)
 
-## Contenu du projet
+## Structure
 
-- `portfolio.html` : page du portfolio, avec les sections profil, réseaux, projets, parcours, compétences et distinctions.
-- `asset/DSC00757.jpg` : portrait utilisé dans la page.
-- `Portfolio_de_Realisations_Elisee_Baki.pdf` : document proposé au téléchargement depuis le portfolio.
+- `portfolio.html` : page statique autonome, avec styles et scripts intégrés.
+- `portfolio-en.html` : version anglaise du portfolio, avec retour vers la version française.
+- `CV-BAKI_FRANCK_ELISEE.pdf` : CV lié aux boutons de téléchargement des versions française et anglaise.
+- `asset/portrait-elisee-baki.webp` : portrait optimisé pour l’affichage web.
+- `asset/portfolio-preview.webp` : aperçu pour le partage sur les réseaux.
+- `asset/favicon.svg` : icône du site.
+- `robots.txt` et `sitemap.xml` : consignes d’indexation et URL des deux versions.
+- `Portfolio_de_Realisations_Elisee_Baki.pdf` : document de réalisations conservé comme ressource distincte du CV.
 
-## Aperçu local
+## Aperçu et déploiement
 
-Ouvrir `portfolio.html` dans un navigateur. La photo et le document PDF doivent rester aux emplacements indiqués pour que leurs liens fonctionnent.
+Ouvrir `portfolio.html` dans un navigateur pour la prévisualisation locale. Les chemins relatifs du CV et des images supposent que le fichier HTML reste à la racine et que le dossier `asset/` conserve son emplacement.
 
-Le site est une page HTML autonome, avec ses styles et animations intégrés ; aucun outil de compilation n'est requis.
+Le site ne nécessite ni dépendances ni compilation. Pour publier les changements, téléverser les fichiers modifiés et les nouveaux fichiers dans le dossier publié par Netlify. La synchronisation automatique entre le dépôt GitHub et Netlify n’a pas été vérifiée.
