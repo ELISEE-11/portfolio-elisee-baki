@@ -2,7 +2,7 @@
 
 Portfolio professionnel d’un étudiant en Master 1 Réseaux et Télécommunications à l’ESATIC, centré sur les réseaux, les infrastructures sécurisées et les systèmes IoT.
 
-- **Site :** [bakiportfolionet.netlify.app](https://bakiportfolionet.netlify.app)
+- **Site :** [bakiportfolio.netlify.app](https://bakiportfolio.netlify.app)
 - **GitHub :** [ELISEE-11](https://github.com/ELISEE-11)
 - **Contact :** [bakielisee75@gmail.com](mailto:bakielisee75@gmail.com)
 

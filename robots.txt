@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bakiportfolionet.netlify.app/sitemap.xml
+Sitemap: https://bakiportfolio.netlify.app/sitemap.xml
