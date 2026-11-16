@@ -8,6 +8,7 @@ Portfolio professionnel d’un étudiant en Master 1 Réseaux et Télécommunica
 
 ## Structure
 
+- `index.html` : page d’entrée du site, redirigeant vers le portfolio français.
 - `portfolio.html` : page statique autonome, avec styles et scripts intégrés.
 - `portfolio-en.html` : version anglaise du portfolio, avec retour vers la version française.
 - `CV-BAKI_FRANCK_ELISEE.pdf` : CV lié aux boutons de téléchargement des versions française et anglaise.
@@ -19,6 +20,6 @@ Portfolio professionnel d’un étudiant en Master 1 Réseaux et Télécommunica
 
 ## Aperçu et déploiement
 
-Ouvrir `portfolio.html` dans un navigateur pour la prévisualisation locale. Les chemins relatifs du CV et des images supposent que le fichier HTML reste à la racine et que le dossier `asset/` conserve son emplacement.
+Ouvrir `index.html` pour la prévisualisation locale, ou accéder directement à `portfolio.html`. Les chemins relatifs du CV et des images supposent que les fichiers HTML restent à la racine et que le dossier `asset/` conserve son emplacement.
 
 Le site ne nécessite ni dépendances ni compilation. Pour publier les changements, téléverser les fichiers modifiés et les nouveaux fichiers dans le dossier publié par Netlify. La synchronisation automatique entre le dépôt GitHub et Netlify n’a pas été vérifiée.
